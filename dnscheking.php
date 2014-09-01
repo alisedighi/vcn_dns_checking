@@ -16,10 +16,26 @@ function extractDomain ($str)
 	$fLoc = strpos($str,'"')+1;
 	$substrLength = strrpos($str,'"')-$fLoc ;
 	$domainName = substr($str,$fLoc,$substrLength);
-	return "<br>".$domainName."<br>";
+	return $domainName;
+}
+function aorptr ($str)
+{
+	echo "[".$str."] is :";
+	$ptr = ".in-addr.arpa";
+	if (strpos($str,$ptr) !== false)
+	    {
+	    	echo " <b>A PTR</b><br>";
+//		echo gethostbyaddr($str)."<br>";
+	    }
+	    else
+	    {
+	    	echo " <b>A record</b><br>";
+	//	echo gethostbyname($str)."<br>";
+	    }
 }
 $ourhost = "www.vcn.bc.ca";
 echo gethostbyname($ourhost)."<br>";
+
 echo "reading the file<br>";
 $myfile = fopen("named.conf","r")or die ("unable to open the file!");
 {	 
@@ -28,7 +44,7 @@ $myfile = fopen("named.conf","r")or die ("unable to open the file!");
 		$line =  stream_get_line($myfile , 4096,"\n");
 		if(preg_match('/^zone/i',$line))
 		{
-			echo extractDomain($line);					
+			aorptr(extractDomain($line));						    
 		}
 	}
 	fclose ($myfile);	
