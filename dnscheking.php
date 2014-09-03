@@ -11,20 +11,24 @@
 #Output:      A string that contains a list of domains
 #####################################################################
 */
+function extractDomain ($str)
+{	
+	$fLoc = strpos($str,'"')+1;
+	$substrLength = strrpos($str,'"')-$fLoc ;
+	$domainName = substr($str,$fLoc,$substrLength);
+	return "<br>".$domainName."<br>";
+}
+$ourhost = "www.vcn.bc.ca";
+echo gethostbyname($ourhost)."<br>";
 echo "reading the file<br>";
 $myfile = fopen("named.conf","r")or die ("unable to open the file!");
 {	 
 	while(!feof($myfile))	
 	{	
 		$line =  stream_get_line($myfile , 4096,"\n");
-		echo $line;
 		if(preg_match('/^zone/i',$line))
 		{
-			echo "<u> zone</u><br>";
-		}
-		else
-		{
-			echo "<b>no zone</b><br>";
+			echo extractDomain($line);					
 		}
 	}
 	fclose ($myfile);	
