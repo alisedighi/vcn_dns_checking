@@ -2,7 +2,7 @@
 /*
 #Author:      Ali Sedi        
 #Language:    PHP
-#Date:        31 August 2013  
+#Date:        31 August 2014  
 #--------------------------------------------------------------------
 #Description: Script reads the named.conf file and and check domains
 #             and assosiated dns. 
