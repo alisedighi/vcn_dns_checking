@@ -40,6 +40,7 @@ function getwhoisfromiana($server , $ip)
 	$f = fsockopen($server , 43 , $errno , $errstr , 3);
 	if (!$f)
 	{
+		echo $errstr;
 		return '';
 	}
 	if(!stream_set_timeout($f,3))
@@ -48,7 +49,7 @@ function getwhoisfromiana($server , $ip)
 	}
 	if($f)
 	{
-		fputs($f,"$iprn")
+		fputs($f,$ip);
 	}
 	
 	if(!stream_set_timeout($f,3))
@@ -58,33 +59,35 @@ function getwhoisfromiana($server , $ip)
 	stream_set_blocking($f,0);
 	if($f)
 	{
-		while (!feof($f)
+		while (!feof($f))
 		{
 			$data .= fread ($f , 128);
 		}
 	}
+//	print_r $data;
 	return $data;
 }
 
 function get_whois($ip)
 {
-        $ianawhois= getwhoisfromiana('whois.iana.org',$ip);
+        $ianawhois= getwhoisfromiana('http://whois.iana.org',$ip);
         preg_match('@whois.[w.]*@si'.$ianawhois,$data);
         $whois_server=$data[0];
         print $whois_server."<br>";
 
         $whois_data = getwhoisfromiana($whois_server,$ip);
+	echo $whois_data;
         return $whois_data;
+
 }
 
 
-
-
+echo "test";
 $ourhost = "www.vcn.bc.ca";
 $ip= gethostbyname($ourhost);
 echo $ip."<br>";
-$mytest = get_whois($ip);
-print_r $mytest;
+get_whois($ip);
+
 
 
 echo "reading the file<br>";
