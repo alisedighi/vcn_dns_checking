@@ -33,7 +33,7 @@ function aorptr ($str)
 	//	echo gethostbyname($str)."<br>";
 	    }
 }
-
+/*
 function getwhoisfromiana($server , $ip)
 {
 	$data='';
@@ -67,7 +67,7 @@ function getwhoisfromiana($server , $ip)
 //	print_r $data;
 	return $data;
 }
-
+*/
 function get_whois($ip)
 {
         $ianawhois= getwhoisfromiana('http://whois.iana.org',$ip);
