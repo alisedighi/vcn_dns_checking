@@ -18,6 +18,7 @@ function extractDomain ($str)
 	$domainName = substr($str,$fLoc,$substrLength);
 	return $domainName;
 }
+
 function aorptr ($str)
 {
 	echo "[".$str."] is :";
@@ -32,6 +33,11 @@ function aorptr ($str)
 	    	echo " <b>A record</b><br>";
 	//	echo gethostbyname($str)."<br>";
 	    }
+}
+
+function dns_records($domain)
+{
+	//find the real dns	
 }
 /*
 function getwhoisfromiana($server , $ip)
@@ -67,7 +73,6 @@ function getwhoisfromiana($server , $ip)
 //	print_r $data;
 	return $data;
 }
-*/
 function get_whois($ip)
 {
         $ianawhois= getwhoisfromiana('http://whois.iana.org',$ip);
@@ -80,13 +85,13 @@ function get_whois($ip)
         return $whois_data;
 
 }
-
+*/
 
 echo "test";
 $ourhost = "www.vcn.bc.ca";
 $ip= gethostbyname($ourhost);
 echo $ip."<br>";
-get_whois($ip);
+//get_whois($ip);
 
 
 
