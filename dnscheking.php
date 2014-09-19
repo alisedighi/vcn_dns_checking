@@ -39,53 +39,6 @@ function dns_records($domain)
 {
 	//find the real dns	
 }
-/*
-function getwhoisfromiana($server , $ip)
-{
-	$data='';
-	$f = fsockopen($server , 43 , $errno , $errstr , 3);
-	if (!$f)
-	{
-		echo $errstr;
-		return '';
-	}
-	if(!stream_set_timeout($f,3))
-	{
-		die('unable to set set_timeout');
-	}
-	if($f)
-	{
-		fputs($f,$ip);
-	}
-	
-	if(!stream_set_timeout($f,3))
-	{
-		die('unable to stream_set_timeout');
-	}
-	stream_set_blocking($f,0);
-	if($f)
-	{
-		while (!feof($f))
-		{
-			$data .= fread ($f , 128);
-		}
-	}
-//	print_r $data;
-	return $data;
-}
-function get_whois($ip)
-{
-        $ianawhois= getwhoisfromiana('http://whois.iana.org',$ip);
-        preg_match('@whois.[w.]*@si'.$ianawhois,$data);
-        $whois_server=$data[0];
-        print $whois_server."<br>";
-
-        $whois_data = getwhoisfromiana($whois_server,$ip);
-	echo $whois_data;
-        return $whois_data;
-
-}
-*/
 
 echo "test";
 $ourhost = "www.vcn.bc.ca";
